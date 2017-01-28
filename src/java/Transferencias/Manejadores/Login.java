@@ -10,11 +10,13 @@ import javax.faces.bean.SessionScoped;
 
 
 
+
 @ManagedBean(name = "Login")
 @SessionScoped
 public class Login implements Serializable {
 
-     private String userName;
+    private boolean tipoUser;
+    private String userName;
     private String password;
     private String dbuserName;
   
@@ -61,8 +63,9 @@ public class Login implements Serializable {
     {
         try
         {
-            Class.forName("org.postgreslq.Driver");
-            connection = DriverManager.getConnection("jdbc:postgres://localhost:5432/bdbanco","postgres","postgres");
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco","postgres","postgres");
+            //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
             SQL = "Select * from usuario where usuario_email like ('" + userName +"')";
             //SQL = "Select * from Usuario where usuario_email = (' " + userName +" ')";
@@ -70,6 +73,7 @@ public class Login implements Serializable {
             resultSet.next();
             dbuserName = resultSet.getString(12);
             dbpassword = resultSet.getString(13);
+            tipoUser = resultSet.getBoolean("usuario_tipo");
             System.out.println(dbuserName + dbpassword);
         }
         catch(Exception ex)
@@ -79,23 +83,21 @@ public class Login implements Serializable {
         }
     }
      
-    public String checkValidUser()
-    {
+    public String checkValidUser() {
         dbData(userName);
-  
-        if(userName.equals(dbuserName))
-        {
-  
-            if(password.equals(dbpassword))
+
+        if (userName.equalsIgnoreCase(dbuserName)) {
+
+            if (password.equals(dbpassword)) {
+                if (tipoUser) {
+                    return "adminSuccess.jsp";
+                }
                 return "success.jsp";
-            else
-            {
+            } else {
                 return "failure.jsp";
             }
-        }
-        else
-        {
-            return "pruebas.jsp";
+        } else {
+            return "failure.jsp";
         }
     }
 }

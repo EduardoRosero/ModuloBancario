@@ -41,9 +41,9 @@ and open the template in the editor.
             <h:form style="margin: 0 auto">
                 <h:panelGrid columns="2" cellpadding="5" style="margin : 0 auto;">
                     <p:outputLabel value="Usuario:" for="acSimple" style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="acSimple" value="#{Login.password}" completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:autoComplete id="acSimple" value="#{Login.userName}" completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
                     <p:outputLabel for="pwd2" value="Contraseña:"  style="font-size: 0.6cm; size: 8cm;"/>
-                    <p:password id="pwd2" value="#{Login.userName}" label="Password 2" required="true" style="font-size: 0.5cm"/>
+                    <p:password id="pwd2" value="#{Login.password}" label="Password 2" required="true" style="font-size: 0.5cm"/>
                 </h:panelGrid>
                 <h:commandButton id="btnIngresar" value="INGRESAR" action="#{Login.checkValidUser}" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
             </h:form>

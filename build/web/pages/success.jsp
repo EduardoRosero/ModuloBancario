@@ -12,6 +12,6 @@
         <title>Bienvenido!</title>
     </head>
     <body>
-        <h1>Autenticación exitosa</h1>
+        <h1>Autenticación exitosa usuario</h1>
     </body>
 </html>

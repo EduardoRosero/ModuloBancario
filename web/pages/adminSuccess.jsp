@@ -12,6 +12,6 @@
         <title>Fallo</title>
     </head>
     <body>
-        <h1>Fallo usuario</h1>
+        <h1>Autenticación exitosa Usuario Administrador</h1>
     </body>
 </html>
