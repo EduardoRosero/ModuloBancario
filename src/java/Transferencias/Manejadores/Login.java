@@ -9,7 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
-@ManagedBean(name = "usuarioController")
+
+@ManagedBean(name = "Login")
 @SessionScoped
 public class Login implements Serializable {
 
@@ -60,14 +61,16 @@ public class Login implements Serializable {
     {
         try
         {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_cinemaEEv3","root","ctrlwd771");
+            Class.forName("org.postgreslq.Driver");
+            connection = DriverManager.getConnection("jdbc:postgres://localhost:5432/bdbanco","postgres","postgres");
             statement = connection.createStatement();
-            SQL = "Select * from Usuario where username like ('" + userName +"')";
+            SQL = "Select * from usuario where usuario_email like ('" + userName +"')";
+            //SQL = "Select * from Usuario where usuario_email = (' " + userName +" ')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
-            dbuserName = resultSet.getString(9).toString();
-            dbpassword = resultSet.getString(10).toString();
+            dbuserName = resultSet.getString(12);
+            dbpassword = resultSet.getString(13);
+            System.out.println(dbuserName + dbpassword);
         }
         catch(Exception ex)
         {
@@ -80,19 +83,19 @@ public class Login implements Serializable {
     {
         dbData(userName);
   
-        if(userName.equalsIgnoreCase(dbuserName))
+        if(userName.equals(dbuserName))
         {
   
             if(password.equals(dbpassword))
-                return "sucess";
+                return "success.jsp";
             else
             {
-                return "failure";
+                return "failure.jsp";
             }
         }
         else
         {
-            return "failure";
+            return "pruebas.jsp";
         }
     }
 }
