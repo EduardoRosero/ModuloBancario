@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Mutualista Central</title> 
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"></meta>
+        <link rel="stylesheet" type="text/css" href="resources/css/gestures.css"/>
+    </h:head>
+    <h:body>
+        <div id="zona-gestos" >
+            <div id="zona-mutualista">MUTUALISTA</div>
+            <div id="zona-central">CENTRAL</div>
+        </div>
+
+        <div id="zona-encabezado">
+            <p:tabMenu activeIndex="#{param.i}" id="menu1">
+                <p:menuitem value="Inicio" outcome="index.xhtml" icon="ui-icon-star" id="item1">
+                    <f:param name="i" value="0" />
+                </p:menuitem>
+                <p:menuitem value="Resgistro" outcome="usuario/Create.xhtml" icon="ui-icon-plus" id="item2" >
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+                <p:menuitem value="Ingreso" outcome="pages/Login.xhtml" icon="ui-icon-key" id="item3">
+                    <f:param name="i" value="2" />
+                </p:menuitem>
+                <p:menuitem value="Sobre Nosotros" outcome="./" icon="ui-icon-info" id="item4">
+                    <f:param name="i" value="3" />
+                </p:menuitem>
+            </p:tabMenu>
+        </div>
+    
+        <script type="text/javascript" src="resources/js/fastclick.js"></script>
+        <script type="text/javascript" src="resources/js/hammer.min.js"></script>
+        <script type="text/javascript" src="resources/js/gestures.js"></script>
+    </h:body>
+
+
+
+
+</html>
+

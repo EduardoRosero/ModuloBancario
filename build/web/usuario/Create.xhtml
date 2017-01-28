@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Mi Mutualista - Nuevo Usuario</title> 
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"></meta>
+        <link rel="stylesheet" type="text/css" href="../resources/css/gestures.css"/>
+    </h:head>
+    <body>
+        <div  style="alignment-adjust: auto " class="">
+            <h:panelGrid columns="2" style="margin: 0 auto; width: 100%">
+                <h:column>
+                    <div style="text-align: left; alignment-adjust: auto ">
+                        <a href="../index.xhtml" style="color: appworkspace; font-size: 0.5cm;">
+                            <img id="home" src="../resources/img/home.jpg" alt="INICIO" height="50" width="50" ><br>INICIO</br></img>
+                        </a>
+                    </div>
+                </h:column>
+                
+                <h:column>
+                    <div style="text-align: right; alignment-adjust: auto ">
+                        <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""/>
+                        <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"/>
+                    </div>
+                </h:column>
+            </h:panelGrid>
+
+        </div>
+        <div id="zona-crear-nuevo" style="margin: 0 auto; margin-top: 2cm; width:  60%; color: cornsilk; font-size: 0.8cm; text-align: center">INGRESE SUS DATOS
+            <p:spacer height="10" /><p:separator />
+            <h:form style="margin: 0 auto">
+                <h:panelGrid columns="2" style="margin: 0 auto">
+
+                    <h:outputLabel value="Cédula:" for="usuarioCi" />
+                    <h:inputText id="usuarioCi" value="#{usuarioController.selected.usuarioCi}" title="#{bundle.CreateUsuarioTitle_usuarioCi}" />
+
+                    <h:outputLabel value="Primer Nombre:" for="usuarioNom1" />
+                    <h:inputText id="usuarioNom1" value="#{usuarioController.selected.usuarioNom1}" title="#{bundle.CreateUsuarioTitle_usuarioNom1}" />
+
+                    <h:outputLabel value="Segundo Nombre:" for="usuarioNom2" />
+                    <h:inputText id="usuarioNom2" value="#{usuarioController.selected.usuarioNom2}" title="#{bundle.CreateUsuarioTitle_usuarioNom2}" />
+
+                    <h:outputLabel value="Apellido Paterno:" for="usuarioApe1" />
+                    <h:inputText id="usuarioApe1" value="#{usuarioController.selected.usuarioApe1}" title="#{bundle.CreateUsuarioTitle_usuarioApe1}" />
+
+                    <h:outputLabel value="Apellido Materno:" for="usuarioApe2" />
+                    <h:inputText id="usuarioApe2" value="#{usuarioController.selected.usuarioApe2}" title="#{bundle.CreateUsuarioTitle_usuarioApe2}" />
+
+                    <h:outputLabel value="Teléfono:" for="usuarioTelf" />
+                    <h:inputText id="usuarioTelf" value="#{usuarioController.selected.usuarioTelf}" title="#{bundle.CreateUsuarioTitle_usuarioTelf}" />
+
+                    <h:outputLabel value="Dirección:" for="usuarioDir" />
+                    <h:inputText id="usuarioDir" value="#{usuarioController.selected.usuarioDir}" title="#{bundle.CreateUsuarioTitle_usuarioDir}" />
+
+                    <h:outputLabel value="Sexo:" for="usuarioSexo" />
+                    <h:inputText id="usuarioSexo" value="#{usuarioController.selected.usuarioSexo}" title="#{bundle.CreateUsuarioTitle_usuarioSexo}" />
+
+                    <h:outputLabel value="Edad:" for="usuarioEdad" />
+                    <h:inputText id="usuarioEdad" value="#{usuarioController.selected.usuarioEdad}" title="#{bundle.CreateUsuarioTitle_usuarioEdad}" />
+
+                    <h:outputLabel value="E-Mail:" for="usuarioEmail" />
+                    <h:inputText id="usuarioEmail" value="#{usuarioController.selected.usuarioEmail}" title="#{bundle.CreateUsuarioTitle_usuarioEmail}" />
+
+                    <h:outputLabel value="Contraseña:" for="usuarioPass" />
+                    <h:inputText id="usuarioPass" value="#{usuarioController.selected.usuarioPass}" title="#{bundle.CreateUsuarioTitle_usuarioPass}" />
+
+                    <h:outputLabel value="Tipo de Usuario:" for="usuarioTipo" />
+                    <h:inputText id="usuarioTipo" value="false" title="#{bundle.CreateUsuarioTitle_usuarioTipo}" disabled="true"/>
+
+                    <h:outputLabel value="Entidad Bancaria:" for="entidadId" />
+                    <h:selectOneMenu id="entidadId" value="#{usuarioController.selected.entidadId}" title="#{bundle.CreateUsuarioTitle_entidadId}" >
+
+                        <f:selectItems value="#{entidadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton  id="guardar" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" icon="ui-icon-disk"/>
+
+            </h:form>
+        </div>
+
+        <script type="text/javascript" src="../resources/js/fastclick.js"></script>
+        <script type="text/javascript" src="../resources/js/hammer.min.js"></script>
+        <script type="text/javascript" src="../resources/js/gestures.js"></script>
+    </body>
+</html>

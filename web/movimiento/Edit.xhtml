@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMovimientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_movId}" for="movId" />
+                    <h:inputText id="movId" value="#{movimientoController.selected.movId}" title="#{bundle.EditMovimientoTitle_movId}" required="true" requiredMessage="#{bundle.EditMovimientoRequiredMessage_movId}"/>
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_movFecha}" for="movFecha" />
+                    <h:inputText id="movFecha" value="#{movimientoController.selected.movFecha}" title="#{bundle.EditMovimientoTitle_movFecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_movHora}" for="movHora" />
+                    <h:inputText id="movHora" value="#{movimientoController.selected.movHora}" title="#{bundle.EditMovimientoTitle_movHora}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_movValor}" for="movValor" />
+                    <h:inputText id="movValor" value="#{movimientoController.selected.movValor}" title="#{bundle.EditMovimientoTitle_movValor}" />
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_movOrigen}" for="movOrigen" />
+                    <h:inputText id="movOrigen" value="#{movimientoController.selected.movOrigen}" title="#{bundle.EditMovimientoTitle_movOrigen}" />
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_movDestino}" for="movDestino" />
+                    <h:inputText id="movDestino" value="#{movimientoController.selected.movDestino}" title="#{bundle.EditMovimientoTitle_movDestino}" />
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_tipoId}" for="tipoId" />
+                    <h:selectOneMenu id="tipoId" value="#{movimientoController.selected.tipoId}" title="#{bundle.EditMovimientoTitle_tipoId}" >
+                        <f:selectItems value="#{tipoMovController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMovimientoLabel_cuentaId}" for="cuentaId" />
+                    <h:selectOneMenu id="cuentaId" value="#{movimientoController.selected.cuentaId}" title="#{bundle.EditMovimientoTitle_cuentaId}" >
+                        <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{movimientoController.update}" value="#{bundle.EditMovimientoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMovimientoViewLink}"/>
+                <br />
+                <h:commandLink action="#{movimientoController.prepareList}" value="#{bundle.EditMovimientoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMovimientoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

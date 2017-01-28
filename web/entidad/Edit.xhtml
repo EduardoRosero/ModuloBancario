@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEntidadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEntidadLabel_entidadId}" for="entidadId" />
+                    <h:inputText id="entidadId" value="#{entidadController.selected.entidadId}" title="#{bundle.EditEntidadTitle_entidadId}" required="true" requiredMessage="#{bundle.EditEntidadRequiredMessage_entidadId}"/>
+                    <h:outputLabel value="#{bundle.EditEntidadLabel_entidadNombre}" for="entidadNombre" />
+                    <h:inputText id="entidadNombre" value="#{entidadController.selected.entidadNombre}" title="#{bundle.EditEntidadTitle_entidadNombre}" />
+                    <h:outputLabel value="#{bundle.EditEntidadLabel_entidadDir}" for="entidadDir" />
+                    <h:inputText id="entidadDir" value="#{entidadController.selected.entidadDir}" title="#{bundle.EditEntidadTitle_entidadDir}" />
+                    <h:outputLabel value="#{bundle.EditEntidadLabel_ruc}" for="ruc" />
+                    <h:inputText id="ruc" value="#{entidadController.selected.ruc}" title="#{bundle.EditEntidadTitle_ruc}" />
+                </h:panelGrid>
+                <h:commandLink action="#{entidadController.update}" value="#{bundle.EditEntidadSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEntidadViewLink}"/>
+                <br />
+                <h:commandLink action="#{entidadController.prepareList}" value="#{bundle.EditEntidadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEntidadIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoMovTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoMovLabel_tipoId}"/>
+                    <h:outputText value="#{tipoMovController.selected.tipoId}" title="#{bundle.ViewTipoMovTitle_tipoId}"/>
+                    <h:outputText value="#{bundle.ViewTipoMovLabel_tipoNom}"/>
+                    <h:outputText value="#{tipoMovController.selected.tipoNom}" title="#{bundle.ViewTipoMovTitle_tipoNom}"/>
+                    <h:outputText value="#{bundle.ViewTipoMovLabel_tipoDesc}"/>
+                    <h:outputText value="#{tipoMovController.selected.tipoDesc}" title="#{bundle.ViewTipoMovTitle_tipoDesc}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoMovController.destroyAndView}" value="#{bundle.ViewTipoMovDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipoMovEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoMovController.prepareCreate}" value="#{bundle.ViewTipoMovCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoMovController.prepareList}" value="#{bundle.ViewTipoMovShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipoMovIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

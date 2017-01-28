@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMovimientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_movId}"/>
+                    <h:outputText value="#{movimientoController.selected.movId}" title="#{bundle.ViewMovimientoTitle_movId}"/>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_movFecha}"/>
+                    <h:outputText value="#{movimientoController.selected.movFecha}" title="#{bundle.ViewMovimientoTitle_movFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_movHora}"/>
+                    <h:outputText value="#{movimientoController.selected.movHora}" title="#{bundle.ViewMovimientoTitle_movHora}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_movValor}"/>
+                    <h:outputText value="#{movimientoController.selected.movValor}" title="#{bundle.ViewMovimientoTitle_movValor}"/>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_movOrigen}"/>
+                    <h:outputText value="#{movimientoController.selected.movOrigen}" title="#{bundle.ViewMovimientoTitle_movOrigen}"/>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_movDestino}"/>
+                    <h:outputText value="#{movimientoController.selected.movDestino}" title="#{bundle.ViewMovimientoTitle_movDestino}"/>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_tipoId}"/>
+                    <h:outputText value="#{movimientoController.selected.tipoId}" title="#{bundle.ViewMovimientoTitle_tipoId}"/>
+                    <h:outputText value="#{bundle.ViewMovimientoLabel_cuentaId}"/>
+                    <h:outputText value="#{movimientoController.selected.cuentaId}" title="#{bundle.ViewMovimientoTitle_cuentaId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{movimientoController.destroyAndView}" value="#{bundle.ViewMovimientoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMovimientoEditLink}"/>
+                <br />
+                <h:commandLink action="#{movimientoController.prepareCreate}" value="#{bundle.ViewMovimientoCreateLink}" />
+                <br />
+                <h:commandLink action="#{movimientoController.prepareList}" value="#{bundle.ViewMovimientoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMovimientoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

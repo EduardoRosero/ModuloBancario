@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioId}" for="usuarioId" />
+                    <h:inputText id="usuarioId" value="#{usuarioController.selected.usuarioId}" title="#{bundle.EditUsuarioTitle_usuarioId}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuarioId}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioCi}" for="usuarioCi" />
+                    <h:inputText id="usuarioCi" value="#{usuarioController.selected.usuarioCi}" title="#{bundle.EditUsuarioTitle_usuarioCi}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioNom1}" for="usuarioNom1" />
+                    <h:inputText id="usuarioNom1" value="#{usuarioController.selected.usuarioNom1}" title="#{bundle.EditUsuarioTitle_usuarioNom1}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioNom2}" for="usuarioNom2" />
+                    <h:inputText id="usuarioNom2" value="#{usuarioController.selected.usuarioNom2}" title="#{bundle.EditUsuarioTitle_usuarioNom2}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioApe1}" for="usuarioApe1" />
+                    <h:inputText id="usuarioApe1" value="#{usuarioController.selected.usuarioApe1}" title="#{bundle.EditUsuarioTitle_usuarioApe1}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioApe2}" for="usuarioApe2" />
+                    <h:inputText id="usuarioApe2" value="#{usuarioController.selected.usuarioApe2}" title="#{bundle.EditUsuarioTitle_usuarioApe2}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioTelf}" for="usuarioTelf" />
+                    <h:inputText id="usuarioTelf" value="#{usuarioController.selected.usuarioTelf}" title="#{bundle.EditUsuarioTitle_usuarioTelf}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioDir}" for="usuarioDir" />
+                    <h:inputText id="usuarioDir" value="#{usuarioController.selected.usuarioDir}" title="#{bundle.EditUsuarioTitle_usuarioDir}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioSexo}" for="usuarioSexo" />
+                    <h:inputText id="usuarioSexo" value="#{usuarioController.selected.usuarioSexo}" title="#{bundle.EditUsuarioTitle_usuarioSexo}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioEdad}" for="usuarioEdad" />
+                    <h:inputText id="usuarioEdad" value="#{usuarioController.selected.usuarioEdad}" title="#{bundle.EditUsuarioTitle_usuarioEdad}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioEmail}" for="usuarioEmail" />
+                    <h:inputText id="usuarioEmail" value="#{usuarioController.selected.usuarioEmail}" title="#{bundle.EditUsuarioTitle_usuarioEmail}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioPass}" for="usuarioPass" />
+                    <h:inputText id="usuarioPass" value="#{usuarioController.selected.usuarioPass}" title="#{bundle.EditUsuarioTitle_usuarioPass}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioTipo}" for="usuarioTipo" />
+                    <h:inputText id="usuarioTipo" value="#{usuarioController.selected.usuarioTipo}" title="#{bundle.EditUsuarioTitle_usuarioTipo}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_entidadId}" for="entidadId" />
+                    <h:selectOneMenu id="entidadId" value="#{usuarioController.selected.entidadId}" title="#{bundle.EditUsuarioTitle_entidadId}" >
+                        <f:selectItems value="#{entidadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{usuarioController.update}" value="#{bundle.EditUsuarioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUsuarioViewLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.EditUsuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUsuarioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

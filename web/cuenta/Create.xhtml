@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCuentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_cuentaId}" for="cuentaId" />
+                    <h:inputText id="cuentaId" value="#{cuentaController.selected.cuentaId}" title="#{bundle.CreateCuentaTitle_cuentaId}" required="true" requiredMessage="#{bundle.CreateCuentaRequiredMessage_cuentaId}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_cuentaNum}" for="cuentaNum" />
+                    <h:inputText id="cuentaNum" value="#{cuentaController.selected.cuentaNum}" title="#{bundle.CreateCuentaTitle_cuentaNum}" />
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_cuentaFecha}" for="cuentaFecha" />
+                    <h:inputText id="cuentaFecha" value="#{cuentaController.selected.cuentaFecha}" title="#{bundle.CreateCuentaTitle_cuentaFecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_saldo}" for="saldo" />
+                    <h:inputText id="saldo" value="#{cuentaController.selected.saldo}" title="#{bundle.CreateCuentaTitle_saldo}" />
+                    <h:outputLabel value="#{bundle.CreateCuentaLabel_usuarioId}" for="usuarioId" />
+                    <h:selectOneMenu id="usuarioId" value="#{cuentaController.selected.usuarioId}" title="#{bundle.CreateCuentaTitle_usuarioId}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cuentaController.create}" value="#{bundle.CreateCuentaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cuentaController.prepareList}" value="#{bundle.CreateCuentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCuentaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

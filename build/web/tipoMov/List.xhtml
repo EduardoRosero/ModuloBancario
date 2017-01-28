@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoMovTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoMovEmpty}" rendered="#{tipoMovController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoMovController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoMovController.pagination.pageFirstItem + 1}..#{tipoMovController.pagination.pageLastItem + 1}/#{tipoMovController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoMovController.previous}" value="#{bundle.Previous} #{tipoMovController.pagination.pageSize}" rendered="#{tipoMovController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoMovController.next}" value="#{bundle.Next} #{tipoMovController.pagination.pageSize}" rendered="#{tipoMovController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoMovController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovTitle_tipoId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovTitle_tipoNom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoNom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoMovTitle_tipoDesc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoDesc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoMovController.prepareView}" value="#{bundle.ListTipoMovViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoMovController.prepareEdit}" value="#{bundle.ListTipoMovEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoMovController.destroy}" value="#{bundle.ListTipoMovDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoMovController.prepareCreate}" value="#{bundle.ListTipoMovCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTipoMovIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

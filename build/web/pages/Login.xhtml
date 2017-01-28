@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Mutualista Central - Login</title> 
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"></meta>
+        <link rel="stylesheet" type="text/css" href="../resources/css/gestures.css"/>
+    </h:head>
+    <body style="text-align: center">
+        <div  style="alignment-adjust: auto " class="">
+            <h:panelGrid columns="2" style="margin: 0 auto; width: 100%">
+                <h:column>
+                    <div style="text-align: left; alignment-adjust: auto ">
+                        <a href="../index.xhtml" style="color: appworkspace; font-size: 0.5cm;">
+                            <img id="home" src="../resources/img/home.jpg" alt="INICIO" height="50" width="50" ><br>INICIO</br></img>
+                        </a>
+                    </div>
+                </h:column>
+                
+                <h:column>
+                    <div style="text-align: right; alignment-adjust: auto ">
+                        <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""/>
+                        <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"/>
+                    </div>
+                </h:column>
+            </h:panelGrid>
+
+        </div>
+
+        <div id="zona-login" style="width: 60%; text-align: center; color: cornsilk;font-size: 0.8cm; margin: 0 auto; margin-top: 2cm;">INGRESE SUS CREDENCIALES
+            <p:spacer height="10" /><p:separator />
+            <h:form style="margin: 0 auto">
+                <h:panelGrid columns="2" cellpadding="5" style="margin : 0 auto;">
+                    <p:outputLabel value="Usuario:" for="acSimple" style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:outputLabel for="pwd2" value="Contraseña:"  style="font-size: 0.6cm; size: 8cm;"/>
+                    <p:password id="pwd2" value="#{passwordView.password5}" label="Password 2" required="true" style="font-size: 0.5cm"/>
+                </h:panelGrid>
+                <p:commandButton id="btnIngresar" value="Ingresar" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
+            </h:form>
+
+        </div>
+
+
+        <script type="text/javascript" src="../resources/js/fastclick.js"></script>
+        <script type="text/javascript" src="../resources/js/hammer.min.js"></script>
+        <script type="text/javascript" src="../resources/js/gestures.js"></script>
+    </body>
+</html>

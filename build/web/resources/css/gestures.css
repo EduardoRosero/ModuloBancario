@@ -1,0 +1,183 @@
+body{
+    //background-color: gold;
+    background-image: url("../img/inversion.jpg");
+}
+
+body.fondo{
+    //background-color: gold;
+    background-image: url("../img/inversion.jpg");
+}
+
+/*body.claro{
+  background-color: #8de1bd;
+}
+
+body.oscuro{
+  background-color: #577a76;
+}*/
+
+body.claro{
+    -webkit-animation: touchClaro 1.5s 1;
+}
+
+body.oscuro{
+    -webkit-animation: touchOscuro 1.5s 1;
+}
+
+
+
+#menu1{
+    color:  #577a76;
+    margin-right:  20px;
+}
+
+div{
+    width:100%;
+    margin-top: 10px;
+    min-height: 40px;
+    display: block;
+    background-color: #577a76;
+}
+
+#zona-gestos{
+    width:100%;
+    background-color: #577a76;
+    text-align: center;
+    font-size: 1.5cm;
+    -webkit-animation: swipe-izquierda 5s infinite, touchOscuro 5s infinite;
+}
+#zona-mutualista{
+    width:100%;
+    background-color: orangered;
+    text-align: center;
+    font-size: 1.5cm;
+    -webkit-animation: swipe-derecha 5s infinite, touchClaro 5s infinite;
+}
+
+#zona-central{
+    width:100%;
+    background-color: orangered;
+    text-align: center;
+    font-size: 1.5cm;
+    -webkit-animation: swipe-derecha 5s infinite, touchClaro 5s infinite;
+}
+
+#gracias-elegirnos{
+    alignment-adjust: auto;
+    background-color: #FFFF00;
+    font-size: 1cm;
+    -webkit-animation: swipe-derecha 5s infinite;
+}
+
+#contacto{
+    width: 50px;
+    height: 50px;
+    margin-right: 1cm;
+    margin-left: 0.5cm;
+}
+
+
+
+#zona-gestos.doubletap{
+    -webkit-animation: pulsacion 1.5s 1;
+}
+
+#zona-gestos.press{
+    -webkit-animation: presion 1.5s 1;
+}
+
+#zona-gestos.swipe-derecha{
+    -webkit-animation: swipe-derecha 3s 1;
+}
+
+#zona-gestos.swipe-izquierda{
+    -webkit-animation: swipe-izquierda 5s 1;
+}
+
+#zona-gestos.rotate{
+    -webkit-animation: rotate 3s 1;
+}
+
+/* Animación con un solo toque */
+#zona-gestos.touch{
+    -webkit-animation: touch 0.1s 1;
+}
+
+@-webkit-keyframes pulsacion {
+    0%, 100% {
+        background-color: #7fba67;
+    }
+    50% {
+        background-color: #8de1bd;
+    }
+}
+
+@-webkit-keyframes presion {
+    0%, 100% {
+        background-color: #7fba67;
+    }
+    50% {
+        background-color: #577a76;
+    }
+}
+
+@-webkit-keyframes swipe-derecha {
+    0%, 100% {
+        margin-left: 0%;
+    }
+    50% {
+        margin-left: 100%;
+    }
+}
+
+@-webkit-keyframes swipe-izquierda {
+    0%, 100% {
+        width: 100%;
+    }
+    50% {
+        width: 30%;
+    }
+}
+
+@-webkit-keyframes rotate { 
+    100% { 
+        -webkit-transform: rotate(360deg);
+    } 
+}
+
+@-webkit-keyframes touchClaro{
+    0%, 100% {
+        background-color: #8eadc5;
+    }
+    50% {
+        background-color: coral;
+    }
+}
+
+@-webkit-keyframes touchOscuro{
+    0%, 100% {
+        background-color: #8eadc5;
+    }
+    50% {
+        background-color: #577a76;
+    }
+}
+
+@-webkit-keyframes ampliar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*Cambio de color en animación de un solo toque*/
+@-webkit-keyframes touch{
+    0%, 100%{
+        background-color: #7fba67;
+    }
+    50% {
+        background-color: #FFFF00;
+    }
+}
