@@ -13,7 +13,7 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"></meta>
         <link rel="stylesheet" type="text/css" href="../resources/css/usuarios.css"/>
     </head>
-    <body>
+    <body style="text-align: center ">
           <div  style="alignment-adjust: auto " >
             <table columns="2" style="margin: 0 auto; width: 100%">
                 <tr>
@@ -24,7 +24,7 @@
                             </a>
                         </div>
                     </td>
-                    <td><div style="color: appworkspace; font-size: 1cm;">Bienvenido al panel de Administración</div></td>
+                    <td><div style="color: appworkspace; font-size: 1cm;">Bienvenido al panel de Usuario</div></td>
                     <td>
                         <div style="text-align: right; alignment-adjust: auto ">
                             <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""/>
