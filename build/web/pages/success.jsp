@@ -20,15 +20,15 @@
                     <td>
                         <div style="text-align: left; alignment-adjust: auto ">
                             <a href="../index.xhtml" style="color: appworkspace; font-size: 0.5cm;">
-                                <img id="home" src="../resources/img/home.jpg" alt="INICIO" height="50" width="50" ><br>INICIO</br></img>
+                                <img id="home" src="../resources/img/config.jpg" alt="CONFIGURAR CUENTA" height="50" width="50" ><br>CONFIGURAR CUENTA</br></img>
                             </a>
                         </div>
                     </td>
                     <td><div style="color: appworkspace; font-size: 1cm;">Bienvenido al panel de Usuario</div></td>
                     <td>
                         <div style="text-align: right; alignment-adjust: auto ">
-                            <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""/>
-                            <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"/>
+                            <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""></img>
+                            <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"></img>
                         </div>
                     </td>
                     </div>
