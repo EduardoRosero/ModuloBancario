@@ -8,13 +8,6 @@ body.fondo{
     background-image: url("../img/inversion.jpg");
 }
 
-/*body.claro{
-  background-color: #8de1bd;
-}
-
-body.oscuro{
-  background-color: #577a76;
-}*/
 
 body.claro{
     -webkit-animation: touchClaro 1.5s 1;
@@ -76,15 +69,6 @@ div{
     margin-left: 0.5cm;
 }
 
-
-
-#zona-gestos.doubletap{
-    -webkit-animation: pulsacion 1.5s 1;
-}
-
-#zona-gestos.press{
-    -webkit-animation: presion 1.5s 1;
-}
 
 #zona-gestos.swipe-derecha{
     -webkit-animation: swipe-derecha 3s 1;
