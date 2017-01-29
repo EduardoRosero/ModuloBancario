@@ -90,7 +90,7 @@ public class Login implements Serializable {
 
             if (password.equals(dbpassword)) {
                 if (tipoUser) {
-                    return "adminSuccess.jsp";
+                    return "adminSuccess.xhtml";
                 }
                 return "success.jsp";
             } else {
