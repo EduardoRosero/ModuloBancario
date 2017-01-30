@@ -61,7 +61,7 @@
                                 <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
                             </p:submenu>
                         </p:submenu>
-                        <p:menuitem value="Mobile" outcome="/mobile/index" icon="ui-icon-signal" />
+                        <p:menuitem value="Mobile"  icon="ui-icon-signal" />
                     </p:submenu>
                 </p:panelMenu>
             </h:form>

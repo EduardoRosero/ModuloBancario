@@ -1,16 +1,17 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <head>
-        <title>Mutualista Central - Administrador</title> 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Mutualista Central-Administrador</title> 
         <meta charset="utf-8"></meta>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"></meta>
         <link rel="stylesheet" type="text/css" href="../resources/css/usuarios.css"/>
-    </head>
-    <body style="text-align: center">
+    </h:head>
+    <h:body>
 
         <div  style="alignment-adjust: auto " >
             <table columns="2" style="margin: 0 auto; width: 100%">
@@ -29,39 +30,49 @@
                             <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"></img>
                         </div>
                     </td>
-                    </div>
+
                 </tr>
             </table>
         </div>
-        <div>
-            <h:form>
-                <p:growl autoUpdate="true"/>
+        <div id="">
+            <p:tabMenu activeIndex="#{param.i}" id="menu1">
+                <p:menuitem value="Inicio" outcome="../index.xhtml" icon="ui-icon-star" id="item1">
+                    <f:param name="i" value="0" />
+                </p:menuitem>
+                <p:menuitem value="Resgistro" outcome="../usuario/Create.xhtml" icon="ui-icon-plus" id="item2" >
+                    <f:param name="i" value="1" />
+                </p:menuitem>
+                <p:menuitem value="Ingreso" outcome="../pages/Login.xhtml" icon="ui-icon-key" id="item3">
+                    <f:param name="i" value="2" />
+                </p:menuitem>
+                <p:menuitem value="Sobre Nosotros" outcome="../welcomePrimefaces.xhtml" icon="ui-icon-info" id="item4">
+                    <f:param name="i" value="3" />
+                </p:menuitem>
 
-                <p:panelMenu style="width:300px">
-                    <p:submenu label="Ajax Menuitems">
-                        <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" />
-                        <p:menuitem value="Update" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w" />
-                    </p:submenu>
-                    <p:submenu label="Non-Ajax Menuitem">
-                        <p:menuitem value="Delete" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
-                    </p:submenu>
-                    <p:separator />
-                    <p:submenu label="Navigations" >
-                        <p:submenu label="Links" icon="ui-icon-extlink">
-                            <p:submenu label="PrimeFaces" icon="ui-icon-heart">
-                                <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
-                                <p:menuitem value="Docs" url="http://www.primefaces.org/documentation" icon="ui-icon-document" />
-                                <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="ui-icon-arrowthick-1-s" />
-                                <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
-                            </p:submenu>
-                        </p:submenu>
-                        <p:menuitem value="Mobile" outcome="/mobile/index" icon="ui-icon-signal" />
-                    </p:submenu>
-                </p:panelMenu>
-            </h:form>
+            </p:tabMenu>
         </div>
-        <script type="text/javascript" src="../resources/js/fastclick.js"></script>
-        <script type="text/javascript" src="../resources/js/hammer.min.js"></script>
-        <script type="text/javascript" src="../resources/js/gestures.js"></script>
-    </body>
+
+        <h:form>  
+            <p:growl id="messages" showDetail="false"/>
+
+            <div>Mis Opciones</div>
+            <p:menu>
+                <p:submenu label="Ajax">
+                    <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+                    <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                </p:submenu>
+                <p:submenu label="Non-Ajax">
+                    <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+                </p:submenu>
+                <p:submenu label="Navigations">
+                    <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+                    <p:menuitem value="Internal" outcome="../index.xhtml" icon="ui-icon-star"/>
+                </p:submenu>
+            </p:menu>
+        </h:form>
+
+        <script type="text/javascript" src="resources/js/fastclick.js"></script>
+        <script type="text/javascript" src="resources/js/hammer.min.js"></script>
+        <script type="text/javascript" src="resources/js/gestures.js"></script>
+    </h:body>
 </html>
