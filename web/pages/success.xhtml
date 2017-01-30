@@ -11,27 +11,49 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"></meta>
         <link rel="stylesheet" type="text/css" href="../resources/css/usuarios.css"/>
     </h:head>
-    <:body>
-         <div  style="alignment-adjust: auto " >
-            <table columns="2" style="margin: 0 auto; width: 100%">
-                <tr>
-                    <td>
-                        <div style="text-align: left; alignment-adjust: auto ">
-                            <a href="../index.xhtml" style="color: appworkspace; font-size: 0.5cm;">
-                                <img id="home" src="../resources/img/config.jpg" alt="CONFIGURAR CUENTA" height="50" width="50" ><br>CONFIGURAR<br> CUENTA</br></br></img>
-                            </a>
-                        </div>
-                    </td>
-                    <td><div style="color: appworkspace; font-size: 1cm;">Bienvenido al panel de Administración</div></td>
-                    <td>
-                        <div style="text-align: right; alignment-adjust: auto ">
-                            <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""></img>
-                            <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"></img>
-                        </div>
-                    </td>
+    <h:body>
+    <div  style="alignment-adjust: auto " >
+        <table columns="2" style="margin: 0 auto; width: 100%">
+            <tr>
+                <td>
+                    <div style="text-align: left; alignment-adjust: auto ">
+                        <a href="../index.xhtml" style="color: appworkspace; font-size: 0.5cm;">
+                            <img id="home" src="../resources/img/config.jpg" alt="CONFIGURAR CUENTA" height="50" width="50" ><br>CONFIGURAR<br> CUENTA</br></br></img>
+                        </a>
+                    </div>
+                </td>
+                <td><div style="color: appworkspace; font-size: 1cm;">Bienvenido al panel de Usuario</div></td>
+                <td>
+                    <div style="text-align: right; alignment-adjust: auto ">
+                        <img id="pregunta" src="../resources/img/pregunta.jpg" alt="" height="50" width="50" title=""></img>
+                        <img id="contacto" src="../resources/img/contacto.jpg" alt="" height="50" width="50"></img>
+                    </div>
+                </td>
 
-                </tr>
-            </table>
-        </div>
-    <:/body>
+            </tr>
+        </table>
+    </div>
+    <h:form>  
+        <p:growl id="messages" showDetail="true"/>
+
+        <div style="color: appworkspace; font-size: 1cm;">Mis Opciones</div>
+        <p:menu>
+            <p:submenu label="Ajax">
+                <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+                <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>
+            <p:submenu label="Non-Ajax">
+                <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+            </p:submenu>
+            <p:submenu label="Navigations">
+                <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+                <p:menuitem value="Internal" outcome="../index.xhtml" icon="ui-icon-star"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>
+
+    <script type="text/javascript" src="resources/js/fastclick.js"></script>
+    <script type="text/javascript" src="resources/js/hammer.min.js"></script>
+    <script type="text/javascript" src="resources/js/gestures.js"></script>
+    </h:body>
 </html>
