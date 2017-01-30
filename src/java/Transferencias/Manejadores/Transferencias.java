@@ -8,96 +8,86 @@ import java.sql.Statement;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
-
-
 @ManagedBean(name = "Transferencias")
 @SessionScoped
 public class Transferencias implements Serializable {
 
     private boolean tipoUser;
-    private String userName;
-    private String password;
-    private String dbuserName;
-  
-    private String dbpassword;
+    private double bdUserSaldo;
+    private double userSaldo;
+    private String userCuentaRestar;
+    private String userCuentaSumar;
+    
+
     Connection connection;
     Statement statement;
     ResultSet resultSet;
     String SQL;
-     
-  
-    public String getUserName() {
-        return userName;
+
+    public double getBdUserSaldo() {
+        return bdUserSaldo;
     }
- 
-    public void setUserName(String userName) {
-        this.userName = userName;
+
+    public void setBdUserSaldo(double bdUserSaldo) {
+        this.bdUserSaldo = bdUserSaldo;
     }
- 
-    public String getPassword() {
-        return password;
+
+    public double getUserSaldo() {
+        return userSaldo;
     }
- 
-    public void setPassword(String password) {
-        this.password = password;
+
+    public void setUserSaldo(double userSaldo) {
+        this.userSaldo = userSaldo;
     }
- 
-    public String getDbuserName() {
-        return dbuserName;
+
+    public String getUserCuentaRestar() {
+        return userCuentaRestar;
     }
- 
-    public void setDbuserName(String dbuserName) {
-        this.dbuserName = dbuserName;
+
+    public void setUserCuentaRestar(String userCuentaRestar) {
+        this.userCuentaRestar = userCuentaRestar;
     }
- 
-    public String getDbpassword() {
-        return dbpassword;
-    }
- 
-    public void setDbpassword(String dbpassword) {
-        this.dbpassword = dbpassword;
-    }
- 
-    public void dbData(String userName)
-    {
-        try
-        {
+
+    public void dbData(String userCuentaRestar) {
+        try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco","postgres","postgres");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
-            SQL = "Select * from usuario where usuario_email like ('" + userName +"')";
-            //SQL = "Select * from Usuario where usuario_email = (' " + userName +" ')";
+            SQL = "Select * from cuenta where cuenta_num like ('" + userCuentaRestar + "')";
+            //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
-            dbuserName = resultSet.getString(12);
-            dbpassword = resultSet.getString(13);
-            tipoUser = resultSet.getBoolean("usuario_tipo");
-            System.out.println(dbuserName + dbpassword);
-        }
-        catch(Exception ex)
-        {
+            bdUserSaldo = resultSet.getDouble(5);
+        } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
-     
+
     public String checkValidUser() {
-        dbData(userName);
+        dbData(userCuentaRestar);
 
-        if (userName.equalsIgnoreCase(dbuserName)) {
-
-            if (password.equals(dbpassword)) {
-                if (tipoUser) {
-                    return "adminSucces.xhtml";
-                }
-                return "success.xhtml";
-            } else {
-                return "failure.jsp";
+        if (userSaldo <= bdUserSaldo) {
+            try {
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+                //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
+                statement = connection.createStatement();
+                SQL = "update cuenta set saldo = saldo + ('" + userSaldo + "') where cuenta_num = ('" + userCuentaSumar + "')";
+                SQL = "update cuenta set saldo = saldo - ('" + userSaldo + "') where cuenta_num = ('" + userCuentaRestar + "')";
+                //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
+                resultSet = statement.executeQuery(SQL);
+                resultSet.next();
+                //bdUserSaldo = resultSet.getDouble(5);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("Exception Occured in the process :" + ex);
             }
+            return "hola";
         } else {
-            return "failure.jsp";
+            return "chao";
         }
+
     }
 }
