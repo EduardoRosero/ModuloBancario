@@ -92,7 +92,7 @@ public class Login implements Serializable {
                 if (tipoUser) {
                     return "adminSucces.xhtml";
                 }
-                return "success.jsp";
+                return "success.xhtml";
             } else {
                 return "failure.jsp";
             }
