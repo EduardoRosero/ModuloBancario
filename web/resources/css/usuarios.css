@@ -10,3 +10,20 @@ div{
     display: block;
     background-color: #577a76;
 }
+
+#zona_mensaje{
+    width:100%;
+    background-color: #577a76;
+    text-align: center;
+    font-size: 1.5cm;
+    -webkit-animation: touchClaro 5s infinite;
+}
+
+@-webkit-keyframes touchClaro{
+    0%, 100% {
+        background-color: #8eadc5;
+    }
+    50% {
+        background-color: coral;
+    }
+}

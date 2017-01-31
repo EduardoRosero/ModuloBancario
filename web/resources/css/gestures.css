@@ -18,6 +18,14 @@ body.oscuro{
 }
 
 
+#zona-mensaje{
+    width:100%;
+    background-color: #577a76;
+    text-align: center;
+    font-size: 1.5cm;
+    color: appworkspace;
+    -webkit-animation: touchClaro 5s infinite, swipe-derecha 5s infinite;
+}
 
 #menu1{
     color:  #577a76;
@@ -39,6 +47,10 @@ div{
     font-size: 1.5cm;
     -webkit-animation: swipe-izquierda 5s infinite, touchOscuro 5s infinite;
 }
+
+
+
+
 #zona-mutualista{
     width:100%;
     background-color: orangered;
