@@ -16,7 +16,10 @@ div{
     background-color: #577a76;
     text-align: center;
     font-size: 1cm;
+    marquee-direction: reverse;
+    marquee-loop: infinite;
     -webkit-animation: touchClaro 5s infinite;
+    
 }
 
 @-webkit-keyframes touchClaro{
@@ -32,4 +35,9 @@ div{
     75% {
         background-color: #e33b06;
     }
+}
+
+@-webkit-keyframes girando {
+    from { -webkit-transform: rotateY(0deg);    }
+    to   { -webkit-transform: rotateY(-360deg); }
 }
