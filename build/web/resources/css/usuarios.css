@@ -25,6 +25,10 @@ span {
     transition: color 0.2s linear 0.2s;
 }
 
+#zona-transferencias{
+    target: window;
+}
+
 #zona-mensaje{
     width:100%;
     background-color: #577a76;

@@ -15,6 +15,8 @@ import javax.faces.bean.SessionScoped;
 public class Login implements Serializable {
 
     private boolean tipoUser;
+    private boolean transferenciaExitosa;
+    private boolean cuentaExiste;
     private String userName;
     private String password;
     private String dbuserName;
@@ -58,8 +60,6 @@ public class Login implements Serializable {
         this.hora = Calendar.getInstance(Locale.ENGLISH);
     }
 
-    
-    
     public boolean isTipoUser() {
         return tipoUser;
     }
@@ -148,6 +148,14 @@ public class Login implements Serializable {
         this.userValorTransferencia = userValorTransferencia;
     }
 
+    public boolean isTransferenciaExitosa() {
+        return transferenciaExitosa;
+    }
+
+    public void setTransferenciaExitosa(boolean transferenciaExitosa) {
+        this.transferenciaExitosa = transferenciaExitosa;
+    }
+
     public void dbData(String userName) {
         try {
             Class.forName("org.postgresql.Driver");
@@ -167,7 +175,7 @@ public class Login implements Serializable {
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
-    
+
     public int selectCuentaId() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -183,7 +191,7 @@ public class Login implements Serializable {
         }
         return cuentaId;
     }
-    
+
     public int selectUsuarioId() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -240,24 +248,33 @@ public class Login implements Serializable {
         return bdUserSaldo;
     }
 
-   public void validarSaldo(){
-       filtrarSaldo();
-       if(userValorTransferencia<=bdUserSaldo)
-       {
-           actualizarIncremento();
-           actualizarDecremento();
-           crearNuevoMovimientoIncremento();
-           crearNuevoMovimientoDecremento();
-       }
-       else
-       {
-           System.out.println("Sin saldo");
-       }
-   }
-   
-   public void actualizarIncremento()
-   {
-       try {
+    public void validarSaldo() {
+        filtrarSaldo();
+        if (verificarCuenta(userCuentaRestar)) {
+            if (verificarCuenta(userCuentaSumar)) {
+                if (userValorTransferencia <= bdUserSaldo && userValorTransferencia>0) {
+                    actualizarIncremento();
+                    actualizarDecremento();
+                    crearNuevoMovimientoIncremento();
+                    crearNuevoMovimientoDecremento();
+                    transferenciaExitosa = true;
+                } else {
+                    transferenciaExitosa = false;
+                }
+            }
+            else
+            {
+                transferenciaExitosa = false;
+            }
+        }
+        else
+        {
+            transferenciaExitosa = false;
+        }
+    }
+
+    public void actualizarIncremento() {
+        try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             statement = connection.createStatement();
@@ -268,11 +285,30 @@ public class Login implements Serializable {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
-   }
-   
-   public void actualizarDecremento()
-   {
-       try {
+    }
+
+    public boolean verificarCuenta(String numeroCuenta) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            statement = connection.createStatement();
+            SQL = "select * from cuenta where cuenta_num = ('" + numeroCuenta + "')";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+            if (resultSet.getString(1)!= null) {
+                cuentaExiste = true;
+            } else {
+                cuentaExiste = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+        return cuentaExiste;
+    }
+
+    public void actualizarDecremento() {
+        try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             statement = connection.createStatement();
@@ -283,41 +319,34 @@ public class Login implements Serializable {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
-   }
-   
-   public void crearNuevoMovimientoIncremento()
-   {
-       try {
+    }
+
+    public void crearNuevoMovimientoIncremento() {
+        try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             statement = connection.createStatement();
-            SQL = "insert into movimiento (, cuenta_id, tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) "
-                    + " values ( ('" + cuentaId + "'), 1, ('" + fecha + "'), ('" + hora + "'), ('" + userValorTransferencia + "'), ('" + userCuentaSumar + "'), ('" + userCuentaRestar + "')  )";
+            SQL = "insert into movimiento values ( ,('" + cuentaId + "'), 1, ('" + fecha + "'), ('" + hora + "'), ('" + userValorTransferencia + "'), ('" + userCuentaSumar + "'), ('" + userCuentaRestar + "')  )";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
-   }
-   
-   public void crearNuevoMovimientoDecremento()
-   {
-       try {
+    }
+
+    public void crearNuevoMovimientoDecremento() {
+        try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             statement = connection.createStatement();
-            SQL = "insert into movimiento (, cuenta_id, tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) "
-                    + " values ( ('" + cuentaId + "'), 2, ('" + fecha + "'), ('" + hora + "'), ('" + userValorTransferencia + "'), ('" + userCuentaRestar + "'), ('" + userCuentaSumar + "')  )";
+            SQL = "insert into movimiento values ( ,('" + cuentaId + "'), 2, ('" + fecha + "'), ('" + hora + "'), ('" + userValorTransferencia + "'), ('" + userCuentaRestar + "'), ('" + userCuentaSumar + "')  )";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
-   }
-   
-   
-   
-   
+    }
+
 }

@@ -32,11 +32,11 @@ and open the template in the editor.
                     <h:inputText  id="movHora"  rendered="false" value="#{Login.hora}" title="#{bundle.CreateMovimientoTitle_movHora}" >
                         <f:convertDateTime pattern="HH:mm:ss" />
                     </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movOrigen}" for="movOrigen" />
+                    <h:outputLabel value="Cuenta Origen:" for="movOrigen" />
                     <h:inputText id="movOrigen" value="#{Login.userCuentaRestar}" title="#{bundle.CreateMovimientoTitle_movOrigen}" />
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movDestino}" for="movDestino" />
+                    <h:outputLabel value="Cuenta Destino:" for="movDestino" />
                     <h:inputText id="movDestino" value="#{Login.userCuentaSumar}" title="#{bundle.CreateMovimientoTitle_movDestino}" />
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movValor}" for="movValor" />
+                    <h:outputLabel value="Valor:" for="movValor" />
                     <h:inputText id="movValor" value="#{Login.userValorTransferencia}" title="#{bundle.CreateMovimientoTitle_movValor}" />
                     <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_tipoId}" for="tipoId" />
                     <h:selectOneMenu id="tipoId" rendered="false" value="1" title="#{bundle.CreateMovimientoTitle_tipoId}" >
@@ -48,7 +48,8 @@ and open the template in the editor.
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandButton id="btnIngresar" value="Transferirir" action="#{Login.validarSaldo}" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
+                <h:commandButton onclick="alertaTransferencia()" id="btnIngresar" title="#{Login.transferenciaExitosa}" value="TRANSFERIR" action="#{Login.validarSaldo}" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
+                <h:outputLabel  rendered="false" id="comparador" value="#{Login.transferenciaExitosa}" />
                 <br />
             </h:form>
 
