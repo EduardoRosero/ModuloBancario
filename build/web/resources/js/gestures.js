@@ -1,11 +1,12 @@
 var app={
   inicio: function(){
-   this.iniciarConsultaMovimientos();
-   this.iniciarConsultaSaldo();
+   this.iniciarMovimientos();
+   this.iniciarSaldo();
+   this.iniciarTransferencias();
   },
 
-  iniciarConsultaSaldo: function() {
-    var zona = document.getElementById('saldo');
+  iniciarSaldo: function() {
+    var zona = document.getElementById('zona-saldo');
     var hammertime = new Hammer(zona);
     zona.addEventListener('webkitAnimationEnd',function(e){
       zona.className='';
@@ -17,8 +18,21 @@ var app={
 	});
   },
   
-  iniciarConsultaMovimientos: function() {
-    var zona = document.getElementById('consultar');
+  iniciarMovimientos: function() {
+    var zona = document.getElementById('zona-consultar');
+    var hammertime = new Hammer(zona);
+    zona.addEventListener('webkitAnimationEnd',function(e){
+      zona.className='';
+    });
+     // Cambio de clase de zona-gestos para que se muestre el amarillo
+    hammertime.on('tap', function(ev){
+		
+                 $("#cargar").load('../cuenta/List.xhtml');
+	});
+  },
+  
+    iniciarTransferencias: function() {
+    var zona = document.getElementById('zona-transferencias');
     var hammertime = new Hammer(zona);
     zona.addEventListener('webkitAnimationEnd',function(e){
       zona.className='';

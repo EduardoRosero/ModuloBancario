@@ -45,12 +45,12 @@
                         <div style="width: 20%; height: 100%">
                             <h:form>  
                                 <p:menu>
-                                    <p:submenu label="Mi Banca">
-                                        <p:menuitem   icon="ui-icon-disk" ><span id="consultar" style="width: 100%;">CONSULTAR</span></p:menuitem>
-                                        <p:menuitem   icon="ui-icon-disk" ><span id="saldo" style="width: 100%;">SALDO</span></p:menuitem>
+                                    <p:submenu label="Consultas">
+                                        <p:menuitem   icon="ui-icon-disk" ><span id="zona-consultar" style="width: 100%;">MOVIMIENTOS</span></p:menuitem>
+                                        <p:menuitem   icon="ui-icon-disk" ><span id="zona-saldo" style="width: 100%;">SALDO</span></p:menuitem>
                                     </p:submenu>
-                                    <p:submenu label="Non-Ajax">
-                                        <p:menuitem value="Delete" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
+                                    <p:submenu label="Transferencias">
+                                        <p:menuitem   icon="ui-icon-disk" ><span id="zona-transferencias" style="width: 100%;">TRANSFRENCIAS</span></p:menuitem>
                                     </p:submenu>
                                     <p:submenu label="Navigations">
                                         <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
@@ -71,14 +71,5 @@
         <script type="text/javascript" src="../resources/js/gestures.js"></script>
         <script type='text/javascript' src="../resources/js/jquery-3.1.1.min.js"></script>
 
-        <!-- Acción sobre el botón con id=boton y actualizamos el div con id=capa -->
-
-        <script type="text/javascript" id="filtrar-saldo">
-            $(document).ready(function () {
-                $("#saldo").click(function (event) {
-                    $("#cargar").load('Saldo.xhtml');
-                });
-            });
-        </script>
     </h:body>
 </html>
