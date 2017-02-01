@@ -5,8 +5,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import Transferencias.Entidades.Movimiento;
+import Transferencias.Presentaciones.MovimientoController;
 
 @ManagedBean(name = "Transferencias")
 @SessionScoped
@@ -15,6 +20,8 @@ public class Transferencias implements Serializable {
     private boolean tipoUser;
     private double bdUserSaldo;
     private double userSaldo;
+    private final Calendar fecha = Calendar.getInstance(Locale.ENGLISH);
+    private final Calendar hora = Calendar.getInstance(Locale.ENGLISH);
     private String userCuentaRestar;
     private String userCuentaSumar;
     

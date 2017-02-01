@@ -1,6 +1,10 @@
 div{
     background-color: transparent;
 }
+img{
+    width: 318px;
+    height: 174px;
+}
 
 @-webkit-keyframes girando {
     from,20% 	{ -webkit-transform: rotateY(0deg);   }
@@ -18,7 +22,7 @@ div{
 }
 
 #container {
-    margin: 30px auto;
+    margin: 10px auto;
     -webkit-perspective: 500px;
     -moz-perspective: 500px;
     perspective: 500px;
@@ -36,9 +40,9 @@ div{
     -webkit-animation-iteration-count: infinite;
     -moz-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-duration: 20s;
-    -moz-animation-duration: 20s;
-    animation-duration: 20s;
+    -webkit-animation-duration: 17s;
+    -moz-animation-duration: 17s;
+    animation-duration: 17s;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;

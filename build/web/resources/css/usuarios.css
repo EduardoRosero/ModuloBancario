@@ -11,6 +11,17 @@ div{
     background-color: #577a76;
 }
 
+#consultar {
+    text-decoration: none;
+    background-color: activecaption;
+}
+#consultar:hover {
+    background-color:  cadetblue;
+}
+#consultar {
+    transition: color 0.2s linear 0.2s;
+}
+
 #zona-mensaje{
     width:100%;
     background-color: #577a76;

@@ -18,7 +18,7 @@ var app={
   },*/
 
   iniciaHammer: function() {
-    var zona = document.getElementById('zona-gestos');
+    var zona = document.getElementById('consultar');
     var hammertime = new Hammer(zona);
     
     hammertime.get('pinch').set({ enable: true });
@@ -55,6 +55,7 @@ var app={
     // Cambio de clase de zona-gestos para que se muestre el amarillo
     hammertime.on('tap', function(ev){
 		zona.className='touch';
+                 $("#cargar").load('../cuenta/List.xhtml');
 	});
   },
 
