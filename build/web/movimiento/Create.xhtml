@@ -15,22 +15,22 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movId}" for="movId" />
-                    <h:inputText id="movId" value="#{movimientoController.selected.movId}" title="#{bundle.CreateMovimientoTitle_movId}" required="true" requiredMessage="#{bundle.CreateMovimientoRequiredMessage_movId}"/>
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movFecha}" for="movFecha" />
-                    <h:inputText id="movFecha" value="#{movimientoController.selected.movFecha}" title="#{bundle.CreateMovimientoTitle_movFecha}" >
+                    <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_movId}" for="movId" />
+                    <h:inputText rendered="false" id="movId"  value="#{movimientoController.selected.movId}" title="#{bundle.CreateMovimientoTitle_movId}" required="false" requiredMessage="#{bundle.CreateMovimientoRequiredMessage_movId}"/>
+                    <h:outputLabel  rendered="false" value="#{bundle.CreateMovimientoLabel_movFecha}" for="movFecha" />
+                    <h:inputText id="movFecha" rendered="false" value="#{Login.fecha}" title="#{bundle.CreateMovimientoTitle_movFecha}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movHora}" for="movHora" />
-                    <h:inputText id="movHora" value="#{movimientoController.selected.movHora}" title="#{bundle.CreateMovimientoTitle_movHora}" >
+                    <h:outputLabel  rendered="false" value="#{bundle.CreateMovimientoLabel_movHora}" for="movHora" />
+                    <h:inputText  id="movHora"  rendered="false" value="#{Login.hora}" title="#{bundle.CreateMovimientoTitle_movHora}" >
                         <f:convertDateTime pattern="HH:mm:ss" />
                     </h:inputText>
-                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movValor}" for="movValor" />
-                    <h:inputText id="movValor" value="#{movimientoController.selected.movValor}" title="#{bundle.CreateMovimientoTitle_movValor}" />
                     <h:outputLabel value="#{bundle.CreateMovimientoLabel_movOrigen}" for="movOrigen" />
                     <h:inputText id="movOrigen" value="#{movimientoController.selected.movOrigen}" title="#{bundle.CreateMovimientoTitle_movOrigen}" />
                     <h:outputLabel value="#{bundle.CreateMovimientoLabel_movDestino}" for="movDestino" />
                     <h:inputText id="movDestino" value="#{movimientoController.selected.movDestino}" title="#{bundle.CreateMovimientoTitle_movDestino}" />
+                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movValor}" for="movValor" />
+                    <h:inputText id="movValor" value="#{movimientoController.selected.movValor}" title="#{bundle.CreateMovimientoTitle_movValor}" />
                     <h:outputLabel value="#{bundle.CreateMovimientoLabel_tipoId}" for="tipoId" />
                     <h:selectOneMenu id="tipoId" value="#{movimientoController.selected.tipoId}" title="#{bundle.CreateMovimientoTitle_tipoId}" >
                         <f:selectItems value="#{tipoMovController.itemsAvailableSelectOne}"/>

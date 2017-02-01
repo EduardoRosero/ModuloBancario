@@ -22,8 +22,8 @@ public class Login implements Serializable {
     private double userSaldo;
     private double userValorTransferencia;
 
-    private final Calendar fecha = Calendar.getInstance(Locale.ENGLISH);
-    private final Calendar hora = Calendar.getInstance(Locale.ENGLISH);
+    private Calendar fecha;// 
+    private Calendar hora;// 
     private String userCuentaRestar;
     private String userCuentaSumar;
     private String userEmail;
@@ -34,6 +34,24 @@ public class Login implements Serializable {
     ResultSet resultSet;
     String SQL;
 
+    public Calendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Calendar fecha) {
+        this.fecha = Calendar.getInstance(Locale.ENGLISH);
+    }
+
+    public Calendar getHora() {
+        return hora;
+    }
+
+    public void setHora(Calendar hora) {
+        this.hora = Calendar.getInstance(Locale.ENGLISH);
+    }
+
+    
+    
     public boolean isTipoUser() {
         return tipoUser;
     }
