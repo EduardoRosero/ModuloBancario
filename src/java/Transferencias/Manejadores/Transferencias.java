@@ -71,6 +71,25 @@ public class Transferencias implements Serializable {
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
+    
+    public double filtrarSaldo(String userCuentaRestar) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
+            statement = connection.createStatement();
+            SQL = "Select * from cuenta where cuenta_num like ('" + userCuentaRestar + "')";
+            //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+            bdUserSaldo = resultSet.getDouble(5);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+        return bdUserSaldo;
+    }
 
     
     
