@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.Locale;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -19,7 +21,13 @@ public class Login implements Serializable {
     private String userName;
     private String password;
     private String dbuserName;
-    private String bdUserSaldo;
+    private double bdUserSaldo;
+    private double userSaldo;
+    private final Calendar fecha = Calendar.getInstance(Locale.ENGLISH);
+    private final Calendar hora = Calendar.getInstance(Locale.ENGLISH);
+    private String userCuentaRestar;
+    private String userCuentaSumar;
+    private String userEmail;
   
     private String dbpassword;
     Connection connection;
@@ -60,11 +68,11 @@ public class Login implements Serializable {
         this.dbpassword = dbpassword;
     }
 
-    public String getBdUserSaldo() {
+    public double getBdUserSaldo() {
         return bdUserSaldo;
     }
 
-    public void setBdUserSaldo(String bdUserSaldo) {
+    public void setBdUserSaldo(double bdUserSaldo) {
         this.bdUserSaldo = bdUserSaldo;
     }
  
@@ -111,7 +119,7 @@ public class Login implements Serializable {
         }
     }
     
-     public String filtrarSaldo() {
+     public double filtrarSaldo() {
         try {
             
             Class.forName("org.postgresql.Driver");
@@ -119,12 +127,12 @@ public class Login implements Serializable {
             //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
             //('" + userName + "')
-            SQL = "select saldo from cuenta where usuario_id = (select usuario_id from usuario where usuario_email = 'henrygranda@hotmail.com')";
+            SQL = "select saldo from cuenta where usuario_id = (select usuario_id from usuario where usuario_email = ('" + userName + "'))";
             
             //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
-            bdUserSaldo = String.valueOf( resultSet.getDouble(1));
+            bdUserSaldo =  resultSet.getDouble(1);
             
         } catch (Exception ex) {
             ex.printStackTrace();
