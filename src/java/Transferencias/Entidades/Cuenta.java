@@ -26,6 +26,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import Transferencias.Entidades.Usuario;
 
 /**
  *
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Cuenta.findAll", query = "SELECT c FROM Cuenta c"),
     @NamedQuery(name = "Cuenta.findByCuentaId", query = "SELECT c FROM Cuenta c WHERE c.cuentaId = :cuentaId"),
+    //@NamedQuery(name = "Cuenta.findByCuentaId", query = "SELECT c.saldo FROM Cuenta c WHERE c.usuarioId = (SELECT u.usuarioId FROM Usuario u WHERE u.usuarioEmail = :usuarioEmail)"),
     @NamedQuery(name = "Cuenta.findByCuentaNum", query = "SELECT c FROM Cuenta c WHERE c.cuentaNum = :cuentaNum"),
     @NamedQuery(name = "Cuenta.findByCuentaFecha", query = "SELECT c FROM Cuenta c WHERE c.cuentaFecha = :cuentaFecha"),
     @NamedQuery(name = "Cuenta.findBySaldo", query = "SELECT c FROM Cuenta c WHERE c.saldo = :saldo")})

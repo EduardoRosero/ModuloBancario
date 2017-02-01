@@ -72,6 +72,8 @@ public class Transferencias implements Serializable {
         }
     }
 
+    
+    
     public String checkValidUser() {
         dbData(userCuentaRestar);
 
@@ -93,7 +95,7 @@ public class Transferencias implements Serializable {
             }
             return "hola";
         } else {
-            return "chao";
+            return "sinSaldo.xhtml";
         }
 
     }
