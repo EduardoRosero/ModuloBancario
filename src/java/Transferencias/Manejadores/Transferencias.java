@@ -24,6 +24,7 @@ public class Transferencias implements Serializable {
     private final Calendar hora = Calendar.getInstance(Locale.ENGLISH);
     private String userCuentaRestar;
     private String userCuentaSumar;
+    private String userEmail;
     
 
     Connection connection;
@@ -31,6 +32,15 @@ public class Transferencias implements Serializable {
     ResultSet resultSet;
     String SQL;
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    
     public double getBdUserSaldo() {
         return bdUserSaldo;
     }
@@ -71,28 +81,7 @@ public class Transferencias implements Serializable {
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
-    
-    public double filtrarSaldo(String userCuentaRestar) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
-            //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
-            statement = connection.createStatement();
-            SQL = "Select * from cuenta where cuenta_num like ('" + userCuentaRestar + "')";
-            //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
-            resultSet = statement.executeQuery(SQL);
-            resultSet.next();
-            bdUserSaldo = resultSet.getDouble(5);
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Exception Occured in the process :" + ex);
-        }
-        return bdUserSaldo;
-    }
-
-    
-    
+  
     public String checkValidUser() {
         dbData(userCuentaRestar);
 
@@ -118,4 +107,27 @@ public class Transferencias implements Serializable {
         }
 
     }
+    
+    
+    
+      public double filtrarSaldo() {
+        try {
+            
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
+            statement = connection.createStatement();
+            SQL = "Select saldo from cuenta where usuario_id = (Select usuario_id from usuario where usuario_email like ('" + userEmail + "'))";
+            //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+            bdUserSaldo = resultSet.getDouble(5);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+        return bdUserSaldo;
+    }
+
 }

@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
     <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Mi Saldo</title>
+        <link rel="stylesheet" type="text/css" href="../resources/css/gestures.css"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="zona-saldo" style="width: 60%; text-align: center; color: cornsilk;font-size: 0.8cm; margin: 0 auto; margin-top: 2cm;">MI SALDO
+            <p:spacer height="10" /><p:separator />
+            <h:form style="margin: 0 auto">
+                <h:panelGrid columns="2" cellpadding="5" style="margin : 0 auto;">
+                    <p:outputLabel value="#{Login.filtrarSaldo()}" for="acSimple"  style="font-size: 0.5cm; size: 8cm;"/>
+                </h:panelGrid>
+            </h:form>
+        </div>
     </body>
 </html>

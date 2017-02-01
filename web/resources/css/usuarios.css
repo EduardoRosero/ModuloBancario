@@ -11,14 +11,16 @@ div{
     background-color: #577a76;
 }
 
-#consultar {
+span {
     text-decoration: none;
     background-color: activecaption;
+    width: 100%;
 }
-#consultar:hover {
-    background-color:  cadetblue;
+span:hover {
+    background-color:  yellowgreen;
+    font-weight: bold;
 }
-#consultar {
+span {
     transition: color 0.2s linear 0.2s;
 }
 

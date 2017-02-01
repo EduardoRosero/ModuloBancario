@@ -6,12 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ListCuentaTitle}"></h:outputText>
+        <head>
+            <title>Listar Datos</title>
             <link rel="stylesheet" type="text/css" href="../resources/css/gestures.css"/>
-        </ui:define>
-        <ui:define name="body">
+        </head>
+        <body>
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -72,7 +71,7 @@
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListCuentaIndexLink}"/>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </body>
+
 
 </html>

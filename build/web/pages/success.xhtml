@@ -46,8 +46,8 @@
                             <h:form>  
                                 <p:menu>
                                     <p:submenu label="Mi Banca">
-                                        <p:menuitem   icon="ui-icon-disk" ><span id="consultar">CONSULTAR</span></p:menuitem>
-                                        <p:menuitem value="Transferencias" actionListener="#{menuView.update}"  icon="ui-icon-arrowrefresh-1-w"/>
+                                        <p:menuitem   icon="ui-icon-disk" ><span id="consultar" style="width: 100%;">CONSULTAR</span></p:menuitem>
+                                        <p:menuitem   icon="ui-icon-disk" ><span id="saldo" style="width: 100%;">SALDO</span></p:menuitem>
                                     </p:submenu>
                                     <p:submenu label="Non-Ajax">
                                         <p:menuitem value="Delete" actionListener="#{menuView.delete}"  ajax="false" icon="ui-icon-close"/>
@@ -72,10 +72,17 @@
         <script type='text/javascript' src="../resources/js/jquery-3.1.1.min.js"></script>
 
         <!-- Acción sobre el botón con id=boton y actualizamos el div con id=capa -->
-        <script type="text/javascript" id="cargar-pagina">
+        <script type="text/javascript" id="listar-datos">
             $(document).ready(function () {
                 $("#consultar").click(function (event) {
                     $("#cargar").load('../cuenta/List.xhtml');
+                });
+            });
+        </script>
+        <script type="text/javascript" id="filtrar-saldo">
+            $(document).ready(function () {
+                $("#saldo").click(function (event) {
+                    $("#cargar").load('./Saldo.xhtml');
                 });
             });
         </script>
