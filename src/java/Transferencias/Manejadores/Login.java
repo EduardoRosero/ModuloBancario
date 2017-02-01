@@ -34,38 +34,37 @@ public class Login implements Serializable {
     Statement statement;
     ResultSet resultSet;
     String SQL;
-     
-  
+
+    public boolean isTipoUser() {
+        return tipoUser;
+    }
+
+    public void setTipoUser(boolean tipoUser) {
+        this.tipoUser = tipoUser;
+    }
+
     public String getUserName() {
         return userName;
     }
- 
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
- 
+
     public String getPassword() {
         return password;
     }
- 
+
     public void setPassword(String password) {
         this.password = password;
     }
- 
+
     public String getDbuserName() {
         return dbuserName;
     }
- 
+
     public void setDbuserName(String dbuserName) {
         this.dbuserName = dbuserName;
-    }
- 
-    public String getDbpassword() {
-        return dbpassword;
-    }
- 
-    public void setDbpassword(String dbpassword) {
-        this.dbpassword = dbpassword;
     }
 
     public double getBdUserSaldo() {
@@ -75,8 +74,47 @@ public class Login implements Serializable {
     public void setBdUserSaldo(double bdUserSaldo) {
         this.bdUserSaldo = bdUserSaldo;
     }
- 
-    
+
+    public double getUserSaldo() {
+        return userSaldo;
+    }
+
+    public void setUserSaldo(double userSaldo) {
+        this.userSaldo = userSaldo;
+    }
+
+    public String getUserCuentaRestar() {
+        return userCuentaRestar;
+    }
+
+    public void setUserCuentaRestar(String userCuentaRestar) {
+        this.userCuentaRestar = userCuentaRestar;
+    }
+
+    public String getUserCuentaSumar() {
+        return userCuentaSumar;
+    }
+
+    public void setUserCuentaSumar(String userCuentaSumar) {
+        this.userCuentaSumar = userCuentaSumar;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getDbpassword() {
+        return dbpassword;
+    }
+
+    public void setDbpassword(String dbpassword) {
+        this.dbpassword = dbpassword;
+    }
+         
     public void dbData(String userName)
     {
         try
