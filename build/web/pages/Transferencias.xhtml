@@ -17,5 +17,23 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <div>Bienvenido a la pagina de transferencias</div>
+        
+        <div id="zona-login" style="width: 60%; text-align: center; color: cornsilk;font-size: 0.8cm; margin: 0 auto; margin-top: 2cm;">INGRESE SUS CREDENCIALES
+            <p:spacer height="10" /><p:separator />
+            <h:form style="margin: 0 auto">
+                <h:panelGrid columns="2" cellpadding="5" style="margin : 0 auto;">
+                    <p:outputLabel value="Usuario:"  style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="cuentaRestar"  value="#{Login.userName}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:outputLabel value="Usuario:"  style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="cuentaSumar"  value="#{Login.userName}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:outputLabel value="Usuario:"  style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="valorTransferir"  value="#{Login.userName}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    
+                    
+                </h:panelGrid>
+                <h:commandButton id="btnIngresar" value="INGRESAR" action="#{Login.checkValidUser}" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
+            </h:form>
+
+        </div>
     </h:body>
 </html>
