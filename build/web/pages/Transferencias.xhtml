@@ -16,11 +16,11 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="../resources/css/usuarios.css"/>
     </h:head>
     <h:body>
-        <div>Bienvenido a la pagina de transferencias</div>
+       
         
-        <div id="zona-login" style="width: 60%; text-align: center; color: cornsilk;font-size: 0.8cm; margin: 0 auto; margin-top: 2cm;">INGRESE SUS CREDENCIALES
+        <div id="zona-login" style="width: 60%; text-align: center; color: cornsilk;font-size: 0.8cm; margin: 0 auto; margin-top: 2cm;">DATOS DE TRANSFERENCIA
             <p:spacer height="10" /><p:separator />
-            <h:form>
+            <h:form onsubmit="document.getElementById('btnIngresar').">
                 <h:panelGrid columns="2">
                     <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_movId}" for="movId" />
                     <h:inputText rendered="false" id="movId"  value="#{movimientoController.selected.movId}" title="#{bundle.CreateMovimientoTitle_movId}" required="false" requiredMessage="#{bundle.CreateMovimientoRequiredMessage_movId}"/>
@@ -53,5 +53,9 @@ and open the template in the editor.
             </h:form>
 
         </div>
+        <script type="text/javascript" src="../resources/js/fastclick.js"></script>
+        <script type="text/javascript" src="../resources/js/hammer.min.js"></script>
+        <script type="text/javascript" src="../resources/js/gestures.js"></script>
+        <script type='text/javascript' src="../resources/js/jquery-3.1.1.min.js"></script>
     </h:body>
 </html>

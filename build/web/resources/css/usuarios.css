@@ -31,7 +31,10 @@ span {
     text-align: center;
     font-size: 1cm;
     -webkit-animation: touchClaro 5s infinite;
-    
+
+}
+#zona-transferencia-exitosa{
+    -webkit-animation: agrandar 5s infinite;
 }
 
 @-webkit-keyframes touchClaro{
@@ -53,3 +56,12 @@ span {
     from { -webkit-transform: rotateY(0deg);    }
     to   { -webkit-transform: rotateY(-360deg); }
 }
+
+
+@-webkit-keyframes agrandar {
+    from { margin-left: 0%;
+           width: 0%;    }
+    to   { margin-left: 100%;
+           width: 100%;    }
+}
+

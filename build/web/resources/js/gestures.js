@@ -43,6 +43,21 @@ var app={
                  $("#cargar").load('Transferencias.xhtml');
 	});
   },
+  
+  
+    iniciarTransferenciaExitosa: function() {
+    var zona = document.getElementById('btnIngresar');
+    var hammertime = new Hammer(zona);
+    zona.addEventListener('webkitAnimationEnd',function(e){
+      zona.className='';
+    });
+     // Cambio de clase de zona-gestos para que se muestre el amarillo
+    hammertime.on('tap', function(ev){
+		
+                 $("#cargar").unload('Transferencias.xhtml');
+                 $("#cargar").load('TransferenciaExitosa.xhtml');
+	});
+  },
 
 };
 
