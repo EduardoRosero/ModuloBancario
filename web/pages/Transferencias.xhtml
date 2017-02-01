@@ -20,18 +20,36 @@ and open the template in the editor.
         
         <div id="zona-login" style="width: 60%; text-align: center; color: cornsilk;font-size: 0.8cm; margin: 0 auto; margin-top: 2cm;">INGRESE SUS CREDENCIALES
             <p:spacer height="10" /><p:separator />
-            <h:form style="margin: 0 auto">
-                <h:panelGrid columns="2" cellpadding="5" style="margin : 0 auto;">
-                    <p:outputLabel value="Cuenta Origen:"  style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="cuentaRestar"  value="#{Login.userCuentaRestar}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
-                    <p:outputLabel value="Cuenta Destino:"  style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="cuentaSumar"  value="#{Login.userCuentaSumar}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
-                    <p:outputLabel value="Valor a transferir:"  style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="valorTransferir"  value="#{Login.userValorTransferencia}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
-                    
-                    
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_movId}" for="movId" />
+                    <h:inputText rendered="false" id="movId"  value="#{movimientoController.selected.movId}" title="#{bundle.CreateMovimientoTitle_movId}" required="false" requiredMessage="#{bundle.CreateMovimientoRequiredMessage_movId}"/>
+                    <h:outputLabel  rendered="false" value="#{bundle.CreateMovimientoLabel_movFecha}" for="movFecha" />
+                    <h:inputText id="movFecha" rendered="false" value="#{Login.fecha}" title="#{bundle.CreateMovimientoTitle_movFecha}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel  rendered="false" value="#{bundle.CreateMovimientoLabel_movHora}" for="movHora" />
+                    <h:inputText  id="movHora"  rendered="false" value="#{Login.hora}" title="#{bundle.CreateMovimientoTitle_movHora}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movOrigen}" for="movOrigen" />
+                    <h:inputText id="movOrigen" value="#{Login.userCuentaRestar}" title="#{bundle.CreateMovimientoTitle_movOrigen}" />
+                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movDestino}" for="movDestino" />
+                    <h:inputText id="movDestino" value="#{Login.userCuentaSumar}" title="#{bundle.CreateMovimientoTitle_movDestino}" />
+                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movValor}" for="movValor" />
+                    <h:inputText id="movValor" value="#{Login.userValorTransferencia}" title="#{bundle.CreateMovimientoTitle_movValor}" />
+                    <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_tipoId}" for="tipoId" />
+                    <h:selectOneMenu id="tipoId" rendered="false" value="1" title="#{bundle.CreateMovimientoTitle_tipoId}" >
+                        <f:selectItems value="#{tipoMovController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_cuentaId}" for="cuentaId" />
+                    <h:selectOneMenu rendered="false" id="cuentaId" value="#{Login.selectCuentaId}" title="#{bundle.CreateMovimientoTitle_cuentaId}" >
+                        <f:selectItems value="#{cuentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandButton id="btnIngresar" value="Transferirir" action="#{Login.verificarSaldo()}" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
+                <br />
+                <h:commandButton id="btnIngresar" value="Transferirir" action="#{Login.validarSaldo}" style="font-size: 0.5cm; margin-bottom: 0.5cm; margin-top: 0.5cm;" />
+                <br />
             </h:form>
 
         </div>

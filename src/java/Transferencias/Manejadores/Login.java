@@ -21,7 +21,7 @@ public class Login implements Serializable {
     private double bdUserSaldo;
     private double userSaldo;
     private double userValorTransferencia;
-
+    private int cuentaId;
     private Calendar fecha;// 
     private Calendar hora;// 
     private String userCuentaRestar;
@@ -36,6 +36,14 @@ public class Login implements Serializable {
 
     public Calendar getFecha() {
         return fecha;
+    }
+
+    public int getCuentaId() {
+        return cuentaId;
+    }
+
+    public void setCuentaId(int cuentaId) {
+        this.cuentaId = cuentaId;
     }
 
     public void setFecha(Calendar fecha) {
@@ -159,6 +167,38 @@ public class Login implements Serializable {
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
+    
+    public int selectCuentaId() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            statement = connection.createStatement();
+            SQL = "Select cuenta_id from cuenta where cuenta_num like ('" + userCuentaRestar + "')";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+            cuentaId = resultSet.getInt(1);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+        return cuentaId;
+    }
+    
+    public int selectUsuarioId() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            statement = connection.createStatement();
+            SQL = "Select usuario_id from cuenta where cuenta_num like ('" + userCuentaRestar + "')";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+            cuentaId = resultSet.getInt(1);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+        return cuentaId;
+    }
 
     public String checkValidUser() {
         dbData(userName);
@@ -200,52 +240,84 @@ public class Login implements Serializable {
         return bdUserSaldo;
     }
 
-    public void dbDataSaldo(String userCuentaRestar) {
-        try {
+   public void validarSaldo(){
+       filtrarSaldo();
+       if(userValorTransferencia<=bdUserSaldo)
+       {
+           actualizarIncremento();
+           actualizarDecremento();
+           crearNuevoMovimientoIncremento();
+           crearNuevoMovimientoDecremento();
+       }
+       else
+       {
+           System.out.println("Sin saldo");
+       }
+   }
+   
+   public void actualizarIncremento()
+   {
+       try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
-            //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
-            //SQL = "Select * from cuenta where cuenta_num like ('" + userCuentaRestar + "')";
-            SQL = "Select saldo from cuenta where usuario_id = (Select usuario_id from usuario where usuario_email like ('" + userCuentaRestar + "'))";
-            //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
+            SQL = "update cuenta set saldo = saldo + ('" + userValorTransferencia + "') where cuenta_num = ('" + userCuentaSumar + "')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
-            bdUserSaldo = resultSet.getDouble(1);
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
-    }
-
-    public String verificarSaldo() {
-        dbDataSaldo(userEmail);
-
-        if (userValorTransferencia <= bdUserSaldo) {
-            try {
-                Class.forName("org.postgresql.Driver");
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
-                //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
-                statement = connection.createStatement();
-                SQL = "update cuenta set saldo = saldo + ('" + userValorTransferencia + "') where cuenta_num = ('" + userCuentaSumar + "')";
-                resultSet = statement.executeQuery(SQL);
-                SQL = "update cuenta set saldo = saldo - ('" + userValorTransferencia + "') where cuenta_num = ('" + userCuentaRestar + "')";
-                resultSet = statement.executeQuery(SQL);
-                SQL = "Insert into movimiento (, cuenta_id,tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) values (,(select cuenta_id from cuenta where cuenta_num = ( '" + userCuentaRestar +"' )), 1, ('"+ fecha +"'), ('"+ hora +"'), ('"+ userValorTransferencia + "'), ('"+ userCuentaRestar + "'), ('"+ userCuentaSumar + "') )";
-                resultSet = statement.executeQuery(SQL);
-                SQL = "Insert into movimiento (, cuenta_id,tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) values (,(select cuenta_id from cuenta where cuenta_num = ( '" + userCuentaSumar +"' )), 2, ('"+ fecha +"'), ('"+ hora +"'), ('"+ userValorTransferencia + "'), ('"+ userCuentaRestar + "'), ('"+ userCuentaSumar + "') )";
-                //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
-                resultSet = statement.executeQuery(SQL);
-                resultSet.next();
-                //bdUserSaldo = resultSet.getDouble(5);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                System.out.println("Exception Occured in the process :" + ex);
-            }
-            return "hola";
-        } else {
-            return "sinSaldo.xhtml";
+   }
+   
+   public void actualizarDecremento()
+   {
+       try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            statement = connection.createStatement();
+            SQL = "update cuenta set saldo = saldo - ('" + userValorTransferencia + "') where cuenta_num = ('" + userCuentaRestar + "')";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
         }
-
-    }
+   }
+   
+   public void crearNuevoMovimientoIncremento()
+   {
+       try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            statement = connection.createStatement();
+            SQL = "insert into movimiento (, cuenta_id, tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) "
+                    + " values ( ('" + cuentaId + "'), 1, ('" + fecha + "'), ('" + hora + "'), ('" + userValorTransferencia + "'), ('" + userCuentaSumar + "'), ('" + userCuentaRestar + "')  )";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+   }
+   
+   public void crearNuevoMovimientoDecremento()
+   {
+       try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
+            statement = connection.createStatement();
+            SQL = "insert into movimiento (, cuenta_id, tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) "
+                    + " values ( ('" + cuentaId + "'), 2, ('" + fecha + "'), ('" + hora + "'), ('" + userValorTransferencia + "'), ('" + userCuentaRestar + "'), ('" + userCuentaSumar + "')  )";
+            resultSet = statement.executeQuery(SQL);
+            resultSet.next();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception Occured in the process :" + ex);
+        }
+   }
+   
+   
+   
+   
 }

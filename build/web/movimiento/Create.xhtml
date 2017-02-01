@@ -15,14 +15,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel rendered="false" value="#{bundle.CreateMovimientoLabel_movId}" for="movId" />
-                    <h:inputText rendered="false" id="movId"  value="#{movimientoController.selected.movId}" title="#{bundle.CreateMovimientoTitle_movId}" required="false" requiredMessage="#{bundle.CreateMovimientoRequiredMessage_movId}"/>
-                    <h:outputLabel  rendered="false" value="#{bundle.CreateMovimientoLabel_movFecha}" for="movFecha" />
-                    <h:inputText id="movFecha" rendered="false" value="#{Login.fecha}" title="#{bundle.CreateMovimientoTitle_movFecha}" >
+                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movId}" for="movId" />
+                    <h:inputText  id="movId"  value="#{movimientoController.selected.movId}" title="#{bundle.CreateMovimientoTitle_movId}" required="false" requiredMessage="#{bundle.CreateMovimientoRequiredMessage_movId}"/>
+                    <h:outputLabel value="#{bundle.CreateMovimientoLabel_movFecha}" for="movFecha" />
+                    <h:inputText id="movFecha"  value="#{Login.fecha}" title="#{bundle.CreateMovimientoTitle_movFecha}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:inputText>
-                    <h:outputLabel  rendered="false" value="#{bundle.CreateMovimientoLabel_movHora}" for="movHora" />
-                    <h:inputText  id="movHora"  rendered="false" value="#{Login.hora}" title="#{bundle.CreateMovimientoTitle_movHora}" >
+                    <h:outputLabel  value="#{bundle.CreateMovimientoLabel_movHora}" for="movHora" />
+                    <h:inputText  id="movHora"   value="#{Login.hora}" title="#{bundle.CreateMovimientoTitle_movHora}" >
                         <f:convertDateTime pattern="HH:mm:ss" />
                     </h:inputText>
                     <h:outputLabel value="#{bundle.CreateMovimientoLabel_movOrigen}" for="movOrigen" />
