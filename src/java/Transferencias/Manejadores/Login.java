@@ -10,9 +10,6 @@ import java.util.Locale;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
-
-
 @ManagedBean(name = "Login")
 @SessionScoped
 public class Login implements Serializable {
@@ -23,12 +20,14 @@ public class Login implements Serializable {
     private String dbuserName;
     private double bdUserSaldo;
     private double userSaldo;
+    private double userValorTransferencia;
+
     private final Calendar fecha = Calendar.getInstance(Locale.ENGLISH);
     private final Calendar hora = Calendar.getInstance(Locale.ENGLISH);
     private String userCuentaRestar;
     private String userCuentaSumar;
     private String userEmail;
-  
+
     private String dbpassword;
     Connection connection;
     Statement statement;
@@ -114,16 +113,22 @@ public class Login implements Serializable {
     public void setDbpassword(String dbpassword) {
         this.dbpassword = dbpassword;
     }
-         
-    public void dbData(String userName)
-    {
-        try
-        {
+
+    public double getUserValorTransferencia() {
+        return userValorTransferencia;
+    }
+
+    public void setUserValorTransferencia(double userValorTransferencia) {
+        this.userValorTransferencia = userValorTransferencia;
+    }
+
+    public void dbData(String userName) {
+        try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco","postgres","postgres");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
-            SQL = "Select * from usuario where usuario_email like ('" + userName +"')";
+            SQL = "Select * from usuario where usuario_email like ('" + userName + "')";
             //SQL = "Select * from Usuario where usuario_email = (' " + userName +" ')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
@@ -131,14 +136,12 @@ public class Login implements Serializable {
             dbpassword = resultSet.getString(13);
             tipoUser = resultSet.getBoolean("usuario_tipo");
             System.out.println(dbuserName + dbpassword);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
-     
+
     public String checkValidUser() {
         dbData(userName);
 
@@ -156,30 +159,30 @@ public class Login implements Serializable {
             return "failure.jsp";
         }
     }
-    
-     public double filtrarSaldo() {
+
+    public double filtrarSaldo() {
         try {
-            
+
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
             //('" + userName + "')
             SQL = "select saldo from cuenta where usuario_id = (select usuario_id from usuario where usuario_email = ('" + userName + "'))";
-            
+
             //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
-            bdUserSaldo =  resultSet.getDouble(1);
-            
+            bdUserSaldo = resultSet.getDouble(1);
+
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Exception Occured in the process :" + ex);
         }
         return bdUserSaldo;
     }
-     
-     public void dbDataSaldo(String userCuentaRestar) {
+
+    public void dbDataSaldo(String userCuentaRestar) {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
@@ -196,18 +199,23 @@ public class Login implements Serializable {
             System.out.println("Exception Occured in the process :" + ex);
         }
     }
-  
+
     public String verificarSaldo() {
         dbDataSaldo(userEmail);
 
-        if (userSaldo <= bdUserSaldo) {
+        if (userValorTransferencia <= bdUserSaldo) {
             try {
                 Class.forName("org.postgresql.Driver");
                 connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
                 //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
                 statement = connection.createStatement();
-                SQL = "update cuenta set saldo = saldo + ('" + userSaldo + "') where cuenta_num = ('" + userCuentaSumar + "')";
-                SQL = "update cuenta set saldo = saldo - ('" + userSaldo + "') where cuenta_num = ('" + userCuentaRestar + "')";
+                SQL = "update cuenta set saldo = saldo + ('" + userValorTransferencia + "') where cuenta_num = ('" + userCuentaSumar + "')";
+                resultSet = statement.executeQuery(SQL);
+                SQL = "update cuenta set saldo = saldo - ('" + userValorTransferencia + "') where cuenta_num = ('" + userCuentaRestar + "')";
+                resultSet = statement.executeQuery(SQL);
+                SQL = "Insert into movimiento (, cuenta_id,tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) values (,(select cuenta_id from cuenta where cuenta_num = ( '" + userCuentaRestar +"' )), 1, ('"+ fecha +"'), ('"+ hora +"'), ('"+ userValorTransferencia + "'), ('"+ userCuentaRestar + "'), ('"+ userCuentaSumar + "') )";
+                resultSet = statement.executeQuery(SQL);
+                SQL = "Insert into movimiento (, cuenta_id,tipo_id, mov_fecha, mov_hora, mov_valor, mov_origen, mov_destino) values (,(select cuenta_id from cuenta where cuenta_num = ( '" + userCuentaSumar +"' )), 2, ('"+ fecha +"'), ('"+ hora +"'), ('"+ userValorTransferencia + "'), ('"+ userCuentaRestar + "'), ('"+ userCuentaSumar + "') )";
                 //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
                 resultSet = statement.executeQuery(SQL);
                 resultSet.next();

@@ -22,12 +22,12 @@ and open the template in the editor.
             <p:spacer height="10" /><p:separator />
             <h:form style="margin: 0 auto">
                 <h:panelGrid columns="2" cellpadding="5" style="margin : 0 auto;">
-                    <p:outputLabel value="Usuario:"  style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="cuentaRestar"  value="#{Login.userName}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
-                    <p:outputLabel value="Usuario:"  style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="cuentaSumar"  value="#{Login.userName}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
-                    <p:outputLabel value="Usuario:"  style="font-size: 0.5cm; size: 8cm;"/>
-                    <p:autoComplete id="valorTransferir"  value="#{Login.userName}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:outputLabel value="Cuenta Origen:"  style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="cuentaRestar"  value="#{Login.userCuentaRestar}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:outputLabel value="Cuenta Destino:"  style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="cuentaSumar"  value="#{Login.userCuentaSumar}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
+                    <p:outputLabel value="Valor a transferir:"  style="font-size: 0.5cm; size: 8cm;"/>
+                    <p:autoComplete id="valorTransferir"  value="#{Login.userValorTransferencia}"  completeMethod="#{autoCompleteView.completeText}" style="font-size: 0.5cm" required="true"/>
                     
                     
                 </h:panelGrid>
