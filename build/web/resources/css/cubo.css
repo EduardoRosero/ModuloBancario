@@ -2,8 +2,8 @@ div{
     background-color: transparent;
 }
 img{
-    width: 318px;
-    height: 174px;
+    width: 98%;
+    height: 98%;
 }
 
 @-webkit-keyframes girando {
@@ -23,14 +23,15 @@ img{
 
 #container {
     margin: 10px auto;
-    -webkit-perspective: 500px;
-    -moz-perspective: 500px;
-    perspective: 500px;
+    display: block;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    perspective: 600px;
 }
 #zona-girar {
     margin: 10px auto;
-    width: 300px;
-    padding: 30px;
+    width: 400px;
+    padding: 10px;
     -webkit-animation-name: girando;
     -moz-animation-name: girando;
     animation-name: girando;
@@ -40,9 +41,9 @@ img{
     -webkit-animation-iteration-count: infinite;
     -moz-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -webkit-animation-duration: 17s;
-    -moz-animation-duration: 17s;
-    animation-duration: 17s;
+    -webkit-animation-duration: 13s;
+    -moz-animation-duration: 13s;
+    animation-duration: 13s;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -57,13 +58,13 @@ img{
 #zona-girar span {
     position: absolute;
     width: 320px;
-    height: 176px;
+    height: 180px;
     border: 2px solid #fff;
     font-weight: bold;
     font-size: 0.5cm;
     text-align: center;
     text-shadow: #fff 2px 2px 2px 2px;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 #girar1 {
     background-color: red;
