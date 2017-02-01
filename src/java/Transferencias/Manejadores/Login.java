@@ -19,7 +19,7 @@ public class Login implements Serializable {
     private String userName;
     private String password;
     private String dbuserName;
-    private double bdUserSaldo;
+    private String bdUserSaldo;
   
     private String dbpassword;
     Connection connection;
@@ -60,11 +60,11 @@ public class Login implements Serializable {
         this.dbpassword = dbpassword;
     }
 
-    public double getBdUserSaldo() {
+    public String getBdUserSaldo() {
         return bdUserSaldo;
     }
 
-    public void setBdUserSaldo(double bdUserSaldo) {
+    public void setBdUserSaldo(String bdUserSaldo) {
         this.bdUserSaldo = bdUserSaldo;
     }
  
@@ -111,18 +111,20 @@ public class Login implements Serializable {
         }
     }
     
-     public double filtrarSaldo() {
+     public String filtrarSaldo() {
         try {
             
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco", "postgres", "postgres");
             //connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdbanco");
             statement = connection.createStatement();
-            SQL = "Select saldo from cuenta where usuario_id = (Select usuario_id from usuario where usuario_email like ('" + userName + "'))";
+            //('" + userName + "')
+            SQL = "select saldo from cuenta where usuario_id = (select usuario_id from usuario where usuario_email = 'henrygranda@hotmail.com')";
+            
             //SQL = "Select * from Usuario where usuario_email = (' " + userCuentaRestar +" ')";
             resultSet = statement.executeQuery(SQL);
             resultSet.next();
-            bdUserSaldo = resultSet.getDouble(5);
+            bdUserSaldo = String.valueOf( resultSet.getDouble(1));
             
         } catch (Exception ex) {
             ex.printStackTrace();
