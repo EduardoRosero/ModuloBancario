@@ -40,7 +40,7 @@ var app={
      // Cambio de clase de zona-gestos para que se muestre el amarillo
     hammertime.on('tap', function(ev){
 		
-                 $("#cargar").load('../cuenta/List.xhtml');
+                 $("#cargar").load('Transferencias.xhtml');
 	});
   },
 

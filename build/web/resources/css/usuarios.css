@@ -19,6 +19,7 @@ span {
 span:hover {
     background-color:  yellowgreen;
     font-weight: bold;
+    font-size: 0.6cm;
 }
 span {
     transition: color 0.2s linear 0.2s;
